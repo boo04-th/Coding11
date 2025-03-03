@@ -56,9 +56,20 @@ class Library {
     listBooks(){
         this.books.forEach(book => console.log(book.getDetails()));
     }
+
+
+//Task 4: Implementing Book Borrowing
+lendBook(borrowerId, isbn) {
+    let book = this.books.find(bk => bk.isbn === isbn); // finds the specific book
+    let borrower = this.borrowers.find(br => br.borrowerId === borrowerId); // finds the specific borrower
+    if (!book) { // runs if statement to determine which action to run
+        console.log(`Book was not found with this ISBN`);
+    } if (borrower) {
+        console.log(`No borrower was found`);
+    } if (book.copies > 0) {
+        book.updateCopies(-1);
+    } else {
+        console.log(`No books were found`);
+    }
 }
 
-//Test cases
-const library = new Library();
-library.addBook(book1);
-library.listBooks(); // Expected output: "Title: The Great Gatsby, Author: F. Scott Fitzgerald, ISBN: 123456, Copies: 4"
