@@ -73,3 +73,18 @@ lendBook(borrowerId, isbn) {
     }
 }
 
+// Task 5: Implementing Book Returns
+returnBook(borrowerId, isbn) {
+    let book = this.books.find(bk => bk.isbn === isbn); // finds the specific book
+    let borrower = this.borrowers.find(br => br.borrowerId === borrowerId); // finds the specific borrower
+
+    if (!book) { // runs if statement to determine which action to run
+        console.log(`Book was not found with this ISBN`);
+    } if (borrower) {
+        console.log(`No borrower was found`);
+    } else {
+        book.updateCopies(1);
+    }
+}
+}
+
